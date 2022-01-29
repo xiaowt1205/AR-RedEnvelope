@@ -13,8 +13,8 @@
                 this.vid = document.querySelector("#vid");
 
                 marker.addEventListener('markerFound', function () {
-                    this.vid.setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
-                    // this.vid.setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
+                    // this.vid.setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
+                    this.vid.setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
                     this.vid.play();
                 }.bind(this));
 
