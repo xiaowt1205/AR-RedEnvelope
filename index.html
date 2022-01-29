@@ -85,6 +85,44 @@
         color: white;
         font-weight: 900;
     }
+
+    .tips>div>img{
+        width: 40px;
+        position: absolute;
+        top: 40px;
+        left: calc(50% - 20px);
+        animation-name: Wiggle;
+        animation-duration: 1.5s;
+        animation-timing-function: ease-in;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes Wiggle{
+        0%{
+            transform: rotate(0) translate(0);
+        }
+        30%{
+            transform: rotate(0deg)
+        }
+        40%{
+            transform: rotate(-20deg)
+        }
+        50%{
+            transform: rotate(-20deg) translate(0,-10px);
+        }
+        70%{
+            transform: rotate(0) translate(0,0px);
+        }
+        80%{
+            transform: rotate(20deg)
+        }
+        90%{
+            transform: rotate(20deg) translate(0,-10px);
+        }
+        100%{
+            transform: rotate(0) translate(0);
+        }
+    }
 </style>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -93,8 +131,9 @@
     </div>
 
     <div class="tips">
-        <div>快把相機照相紅包袋正面吧</div>
+        <div>快把相機照相紅包袋正面吧<img src="/img/大貓阿福(有背景).png" alt=""></div>
     </div>
+
     <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded
         arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
@@ -106,9 +145,9 @@
         </a-assets>
 
         <!-- type='nft' url='/AR-RedEnvelope/assets/target1' -->
-        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target1' smooth="true" smoothCount="10"
-            smoothTolerance="0.01" smoothThreshold="5">
-            <a-video src="#vid" position='57 -100 -100' rotation='-90 -4 0' width='150' height='300' class="clickable">
+        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target1' smooth="true" smoothCount="5"
+            smoothTolerance="0.01" smoothThreshold="2">
+            <a-video src="#vid" position='50 0 -100' rotation='-90 -4 0' width='110' height='220' class="clickable">
             </a-video>
         </a-nft>
         <a-entity camera></a-entity>
