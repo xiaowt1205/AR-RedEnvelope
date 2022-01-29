@@ -53,35 +53,42 @@
 
         <a-assets>
             <!-- <video src="/AR-RedEnvelope/assets/asset.mp4" -->
-            <video src="/AR-RedEnvelope/assets/asset.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin
+            <video src="/AR-RedEnvelope/assets/vidoe-0.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin
                 webkit-playsinline autoplay muted playsinline>
             </video>
         </a-assets>
 
         <!-- type='nft' url='/AR-RedEnvelope/assets/target' -->
-        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target' smooth="true" smoothCount="10"
+        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target'' smooth="true" smoothCount="10"
             smoothTolerance="0.01" smoothThreshold="5">
-            <a-video src="#vid" position='125 0 -50' rotation='-90 0 0' width='200' height='300' class="clickable">
+            <a-video src="#vid" position='125 0 -50' rotation='-90 0 0' width='360' height='680' class="clickable">
             </a-video>
         </a-nft>
         <a-entity camera></a-entity>
     </a-scene>Î
 </body>
 
-<!-- <script>
+<script>
+    const VIDEO_PATH = "/AR-RedEnvelope/assets/video-"
+
     AFRAME.registerComponent('markerhandler', {
         init: function () {
             this.el.sceneEl.addEventListener('markerFound', () => {
-                // redirect to custom URL e.g. google.com
-                console.log("HI");
-                document.querySelector("video").setAttribute("src", `assets/${getRandomInt()}.mp4`)
-                console.log("11111" + document.querySelector("video").getAttribute("src"));
+                console.log("Found");
+                // document.querySelector("video").setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
+                document.querySelector("video").setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
+                document.querySelector("video").play();
+            })
+            this.el.sceneEl.addEventListener('markerLost', () => {
+                console.log("Lost");
+
+                document.querySelector("video").setAttribute("src", ` `)
             })
         }
     });
 
     function getRandomInt() {
-        return Math.floor(Math.random() * 3);
+        return Math.floor(Math.random() * 2);
     }
 
-</script> -->
+</script>
