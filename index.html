@@ -3,7 +3,14 @@
 
 <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
 <script>
+    
+
     const VIDEO_PATH = "/AR-RedEnvelope/assets/video-"
+
+
+    window.addEventListener('arjs-nft-loaded', (data) => {
+        document.querySelector(".tips").classList.add("active")
+    })
 
     window.onload = function () {
         AFRAME.registerComponent('videohandler', {
@@ -15,12 +22,14 @@
                 marker.addEventListener('markerFound', function () {
                     // this.vid.setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
                     this.vid.setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
+                    document.querySelector(".tips").classList.remove("active")
                     this.vid.play();
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function () {
-                    this.vid.stop();
+                    this.vid.pause();
                     this.vid.setAttribute("src", ` `)
+                    document.querySelector(".tips").classList.add("active")
                     this.vid.currentTime = 0;
                 }.bind(this));
             }
@@ -28,7 +37,7 @@
     };
 
     function getRandomInt() {
-        return Math.floor(Math.random() * 2);
+        return Math.floor(Math.random() * 3);
     }
 </script>
 
@@ -51,19 +60,48 @@
         font-size: 1.25em;
         color: white;
     }
+
+    .tips {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: 1s;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tips.active{
+        opacity: 1;
+    }
+
+    .tips>div{
+        position: relative;
+        top: -40%;
+        color: white;
+        font-weight: 900;
+    }
 </style>
 
 <body style='margin : 0px; overflow: hidden;'>
     <div class="arjs-loader">
         <div>讀取中，請稍等我一下下~</div>
     </div>
+
+    <div class="tips">
+        <div>快把相機照相紅包袋正面吧</div>
+    </div>
     <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded
         arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
 
         <a-assets>
             <!-- <video src="/AR-RedEnvelope/assets/asset.mp4" -->
-            <video src="/AR-RedEnvelope/assets/vidoe-0.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin
-                webkit-playsinline autoplay muted playsinline>
+            <video src="/AR-RedEnvelope/assets/vidoe-0.mp4" preload="auto" id="vid" response-type="arraybuffer" loop
+                crossorigin webkit-playsinline autoplay muted playsinline>
             </video>
         </a-assets>
 
