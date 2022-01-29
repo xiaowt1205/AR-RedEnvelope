@@ -3,6 +3,8 @@
 
 <script src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js'></script>
 <script>
+    const VIDEO_PATH = "/AR-RedEnvelope/assets/video-"
+
     window.onload = function () {
         AFRAME.registerComponent('videohandler', {
             init: function () {
@@ -11,16 +13,23 @@
                 this.vid = document.querySelector("#vid");
 
                 marker.addEventListener('markerFound', function () {
+                    this.vid.setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
+                    // this.vid.setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
                     this.vid.play();
                 }.bind(this));
 
                 marker.addEventListener('markerLost', function () {
-                    this.vid.pause();
+                    this.vid.stop();
+                    this.vid.setAttribute("src", ` `)
                     this.vid.currentTime = 0;
                 }.bind(this));
             }
         });
     };
+
+    function getRandomInt() {
+        return Math.floor(Math.random() * 2);
+    }
 </script>
 
 <style>
@@ -53,13 +62,13 @@
 
         <a-assets>
             <!-- <video src="/AR-RedEnvelope/assets/asset.mp4" -->
-            <video src="/AR-RedEnvelope/assets/vidoe-0.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin
+            <video src="assets/vidoe-0.mp4" preload="auto" id="vid" response-type="arraybuffer" loop crossorigin
                 webkit-playsinline autoplay muted playsinline>
             </video>
         </a-assets>
 
         <!-- type='nft' url='/AR-RedEnvelope/assets/target' -->
-        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target'' smooth="true" smoothCount="10"
+        <a-nft videohandler markerhandler type='nft' url='assets/target' smooth="true" smoothCount="10"
             smoothTolerance="0.01" smoothThreshold="5">
             <a-video src="#vid" position='125 0 -50' rotation='-90 0 0' width='360' height='680' class="clickable">
             </a-video>
@@ -67,28 +76,3 @@
         <a-entity camera></a-entity>
     </a-scene>Î
 </body>
-
-<script>
-    const VIDEO_PATH = "/AR-RedEnvelope/assets/video-"
-
-    AFRAME.registerComponent('markerhandler', {
-        init: function () {
-            this.el.sceneEl.addEventListener('markerFound', () => {
-                console.log("Found");
-                // document.querySelector("video").setAttribute("src", `assets/video-${getRandomInt()}.mp4`)
-                document.querySelector("video").setAttribute("src", `${VIDEO_PATH}${getRandomInt()}.mp4`)
-                document.querySelector("video").play();
-            })
-            this.el.sceneEl.addEventListener('markerLost', () => {
-                console.log("Lost");
-
-                document.querySelector("video").setAttribute("src", ` `)
-            })
-        }
-    });
-
-    function getRandomInt() {
-        return Math.floor(Math.random() * 2);
-    }
-
-</script>
