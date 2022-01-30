@@ -131,11 +131,11 @@
     </div>
 
     <div class="tips">
-        <div>快把相機照相紅包袋正面吧<img src="/img/大貓阿福(有背景).png" alt=""></div>
+        <div>快把相機照相紅包袋正面吧<img src="/AR-RedEnvelope/img/大貓阿福(有背景).png" alt=""></div>
     </div>
 
     <a-scene vr-mode-ui="enabled: false;" renderer='antialias: true; alpha: true; precision: mediump;' embedded
-        arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>
+        arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false; '>
 
         <a-assets>
             <!-- <video src="/AR-RedEnvelope/assets/asset.mp4" -->
@@ -145,8 +145,8 @@
         </a-assets>
 
         <!-- type='nft' url='/AR-RedEnvelope/assets/target1' -->
-        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target1' smooth="true" smoothCount="5"
-            smoothTolerance="0.01" smoothThreshold="2">
+        <a-nft videohandler markerhandler type='nft' url='/AR-RedEnvelope/assets/target2' smooth="true" smoothCount="10"
+            smoothTolerance=".01" smoothThreshold="5">
             <a-video src="#vid" position='50 0 -100' rotation='-90 -4 0' width='110' height='220' class="clickable">
             </a-video>
         </a-nft>
